@@ -56,7 +56,7 @@
                                          t1.F_ytc_Text3=(t2.FNETWEIGHT+t1.F_ytc_Decimal2+t2.FGROSSWEIGHT)*t1.F_ytc_Decimal3 
                           from T_BD_MATERIAL t1 
                           inner join T_BD_MATERIALBASE t2 on t1.FMATERIALID=t2.FMATERIALID 
-                          where t1.F_YTC_ASSISTANT5='571f36cd14afe0' and t1.FNUMBER like '%-ck%'
+                          where t1.F_YTC_ASSISTANT5='571f36cd14afe0'
 					      AND T1.FMATERIALID IN ({listid})
                         ";
             return _result;
