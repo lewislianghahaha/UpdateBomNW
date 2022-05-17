@@ -52,12 +52,12 @@
                             WHERE A1.FCURRENTUNITID='10095'   --必须‘单位’为‘KG’才更新
 
                            --更新‘物料’-整件净重(F_ytc_Text3) 整件毛重(F_ytc_Text4)
-                           UPDATE t1 set t1.F_ytc_Text4=t2.FNETWEIGHT*t1.F_ytc_Decimal3, 
-                                         t1.F_ytc_Text3=(t2.FNETWEIGHT+t1.F_ytc_Decimal2+t2.FGROSSWEIGHT)*t1.F_ytc_Decimal3 
-                          from T_BD_MATERIAL t1 
-                          inner join T_BD_MATERIALBASE t2 on t1.FMATERIALID=t2.FMATERIALID 
-                          where t1.F_YTC_ASSISTANT5='571f36cd14afe0'
-					      AND T1.FMATERIALID IN ({listid})
+                            update t1 set t1.F_ytc_Text4=t2.FNETWEIGHT*t1.F_ytc_Decimal3, 
+                                    t1.F_ytc_Text3=(t2.FNETWEIGHT+t1.F_ytc_Decimal2+t2.FGROSSWEIGHT+t1.t1.F_ytc_Decimal10)*t1.F_ytc_Decimal3 
+                            from T_BD_MATERIAL t1 
+                            inner join T_BD_MATERIALBASE t2 on t1.FMATERIALID=t2.FMATERIALID 
+                            where t1.F_YTC_ASSISTANT5='571f36cd14afe0' 
+                            and t1.FMATERIALID IN ({listid})
                         ";
             return _result;
         }
