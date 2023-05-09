@@ -21,7 +21,7 @@
 		                    inner join T_BD_MATERIAL_L t5 on t4.FMATERIALID=t5.FMATERIALID
 		                    where t1.FREPLACEGROUP='1' and t4.F_YTC_ASSISTANT5='571f36cd14afe0' and t5.FNAME not like '%套装%' 
 		                    AND t5.FNAME not like '%装%' and t5.FNAME not like '%套%'
-                            AND t2.FNETWEIGHT>0.1
+                            AND t2.FNETWEIGHT>=0.001
 		                    AND t4.FMATERIALID IN ({listid})
 
                             --更新‘密度’; 密度=净重/U订货计价规格
@@ -36,7 +36,7 @@
                                             AND A.F_YTC_DECIMAL7 !=0
                                             AND A.F_YTC_ASSISTANT5='571f36cd14afe0' --物料分组-产成品
                                             AND (C.FNAME not like '%装%' and C.FNAME not like '%套%' AND C.FNAME NOT LIKE '%獒王%' AND C.FNAME NOT LIKE '%彪马%')
-                                            AND B.FNETWEIGHT>0.1
+                                            AND B.FNETWEIGHT>=0.001
 			                            )X ON A.FMATERIALID=X.FMATERIALID        
 
                             --更新‘物料单位换算’中‘单位’为KG对应的‘换算关系’值,将‘净重’更新至此项
@@ -46,7 +46,7 @@
 				                            SELECT A.FMATERIALID,B.FNETWEIGHT 净重 
 				                            FROM dbo.T_BD_MATERIAL A
 				                            INNER JOIN dbo.T_BD_MATERIALBASE B ON A.FMATERIALID=B.FMATERIALID
-				                            WHERE B.FNETWEIGHT>0.1
+				                            WHERE B.FNETWEIGHT>=0.001
 				                            AND A.FMATERIALID IN ({listid})
 			                            )X ON A1.FMATERIALID=X.FMATERIALID
                             WHERE A1.FCURRENTUNITID='10095'   --必须‘单位’为‘KG’才更新
